@@ -1,0 +1,2 @@
+label,hero,villain,runs,games_per_run,rounds_per_game,total_games,total_hands,initial_stack,small_blind,big_blind,total_chip_delta,avg_gain_game,avg_gain_run,best_game_gain,worst_game_gain,average_chip_delta_hand,average_chip_delta_game,win_rate,bb_per_100,std_dev_returns,ci95_low_game_gain,ci95_high_game_gain,ci95_margin_game_gain
+opponent_vs_custom,opponent,custom,3,5,50,15,750,10000,20,40,-2000,-133.333333,-666.666667,3140,-3900,-2.666667,-133.333333,53.333333,-6.666667,2229.499196,-1261.615599,994.948932,1128.282266
