@@ -1,0 +1,6 @@
+PPO leaderboard eval summary
+============================
+Eval points: 10
+Best avg gain/game: 872.81 at 200,704 steps (win rate 93.75%, BB/100 43.64)
+Final eval point: 844.38 at 1,003,520 steps (win rate 93.75%, BB/100 42.22)
+Final 95% CI for gain/game: 672.26 to 1016.49

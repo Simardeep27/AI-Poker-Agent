@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Agent & Opponent & Win \% & Avg chips/game & 95\% CI & BB/100 \\
+\midrule
+v1 & random & 95.0 & 898.2 & [787.0,1009.3] & 44.91 \\
+v1 & raise & 46.7 & -67.7 & [-322.0,186.7] & -3.38 \\
+v1 & heuristic\_ev & 56.7 & 137.8 & [-109.2,384.8] & 6.89 \\
+\addlinespace
+ppo & random & 95.0 & 898.0 & [786.9,1009.1] & 44.90 \\
+ppo & raise & 75.0 & 484.7 & [264.2,705.1] & 24.23 \\
+ppo & heuristic\_ev & 58.3 & 172.3 & [-60.1,404.8] & 8.62 \\
+\addlinespace
+v3 & random & 96.7 & 922.5 & [830.0,1015.0] & 46.12 \\
+v3 & raise & 46.7 & -68.8 & [-322.8,185.2] & -3.44 \\
+v3 & heuristic\_ev & 53.3 & 97.8 & [-151.5,347.2] & 4.89 \\
+\addlinespace
+v4 & random & 100.0 & 997.2 & [996.0,998.3] & 49.86 \\
+v4 & raise & 86.7 & 730.3 & [557.1,903.5] & 36.52 \\
+v4 & heuristic\_ev & 76.7 & 578.0 & [384.6,771.4] & 28.90 \\
+\addlinespace
+\bottomrule
+\end{tabular}
+\caption{Agent-version benchmark results. Each row uses alternating positions; confidence intervals are over per-game chip gains.}
+\label{tab:agent_versions}
+\end{table}

@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrr}
+\toprule
+Agent & Win \% & Chips/game & 95\% CI & BB/100 \\
+\midrule
+v1 & 56.7 & 137.8 & [-109,385] & 6.89 \\
+ppo & 58.3 & 172.3 & [-60,405] & 8.62 \\
+v3 & 53.3 & 97.8 & [-152,347] & 4.89 \\
+v4 & 76.7 & 578.0 & [385,771] & 28.90 \\
+\bottomrule
+\end{tabular}
+\caption{Compact comparison against the heuristic EV baseline. Estimates use alternating seats and 95\% confidence intervals over per-game chip gains.}
+\label{tab:agent_versions_compact}
+\end{table}
