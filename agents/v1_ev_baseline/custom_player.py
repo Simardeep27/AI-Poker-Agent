@@ -1,3 +1,10 @@
+"""Version 1: EV-oriented heuristic baseline.
+
+This snapshot keeps the first playable policy used for comparison. It parses the
+PyPokerEngine state, estimates equity, and chooses among fold/call/raise with
+simple opponent and pot-pressure adjustments.
+"""
+
 import time
 import random
 

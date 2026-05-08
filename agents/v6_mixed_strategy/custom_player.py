@@ -1,3 +1,9 @@
+"""Version 6: mixed-strategy experiment.
+
+This snapshot tested extra deception and randomized action mixing. It is useful
+as a comparison point, but it was not selected as the final policy.
+"""
+
 import time
 import random
 

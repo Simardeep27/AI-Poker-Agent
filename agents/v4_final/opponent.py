@@ -1,3 +1,9 @@
+"""Online opponent model for the final agent.
+
+The model uses only public action history. It estimates fold/call/raise response
+probabilities with smoothing so early hands do not overfit one action.
+"""
+
 from constants import BASE_FOLD_RATE, PRIOR_STRENGTH, STREETS
 
 

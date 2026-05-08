@@ -1,3 +1,9 @@
+"""Version 5: post-final experimental variant.
+
+This snapshot keeps a later experiment for reproducibility. The final submission
+uses v4 because it evaluated more reliably against the benchmark opponents.
+"""
+
 import time
 import random
 

@@ -1,3 +1,5 @@
+"""Evaluator-facing entrypoint for the modular final agent."""
+
 import os
 import sys
 

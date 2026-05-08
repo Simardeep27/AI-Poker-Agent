@@ -1,7 +1,10 @@
+"""Round-state parsing and lightweight betting-line abstraction."""
+
 from constants import STREETS
 
 
 def read_state(valid_actions, hole_card, round_state, my_uuid):
+    """Convert PyPokerEngine's nested round state into a compact decision state."""
     street = round_state["street"]
     street_num = STREETS.get(street, 0)
     community = round_state.get("community_card", [])

@@ -1,6 +1,6 @@
 """Single-file PPO PyPokerEngine player.
 
-Generated from a MaskablePPO checkpoint. Submit this file as custom_player.py
+Exported from a MaskablePPO checkpoint. Submit this file as custom_player.py
 when the leaderboard imports MyPlayer or setup_ai().
 """
 
@@ -14,6 +14,7 @@ import numpy as np
 
 
 def _ensure_engine_paths():
+    """Make the bundled PyPokerEngine importable from several submission layouts."""
     here = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
     parent = os.path.dirname(here)
     candidates = [

@@ -1,3 +1,9 @@
+"""Action selection for the final agent.
+
+The selector compares sampled EV estimates for call and raise, then applies a
+small set of policy constraints that reduce known failure modes in limit poker.
+"""
+
 from pypokerengine.utils.card_utils import estimate_hole_card_win_rate, gen_cards
 
 from cards import fill_board, preflop_strength
@@ -5,6 +11,7 @@ from constants import BOARD_SAMPLES, NUM_SIMS, WEIGHTS
 
 
 def choose_action(state, hand_info, response):
+    """Choose a legal fold/call/raise action from state features and beliefs."""
     pot = state["pot"]
     to_call = state["to_call"]
     to_raise = state["to_raise"]
@@ -17,6 +24,7 @@ def choose_action(state, hand_info, response):
     pot_odds = to_call / float(max(pot + to_call, 1))
     cards_needed = max(0, 5 - len(community))
 
+    # Start with raw chip EV. Later blocks add small strategic corrections.
     fold_ev = 0.0
     if cards_needed == 0:
         call_ev = call_ev_value(wr, pot, to_call)
@@ -26,6 +34,7 @@ def choose_action(state, hand_info, response):
             state, response, cards_needed, raise_ok, hole_card, community, street
         )
 
+    # Preserve drawing value before the river without letting draws dominate EV.
     future_draw = 0.0 if street == "river" else hand_info["draw_chance"]
     draw_bonus = 0.10 * future_draw * pot
     made_rate = 0.035 if street == "river" else 0.07
@@ -43,6 +52,7 @@ def choose_action(state, hand_info, response):
         if raise_ok and raise_ev > -1e8:
             raise_ev -= 0.08 * pot
 
+    # Reduce thin bluffs against opponents who call too often.
     sticky = response.get("stickiness", 0.0)
     confidence = response.get("confidence", 0.0)
     if raise_ok and raise_ev > -1e8 and sticky > 0.40 and wr < 0.67:
@@ -57,11 +67,13 @@ def choose_action(state, hand_info, response):
         if raise_ok and raise_ev > -1e8 and wr < 0.70 and made_score < 0.78:
             raise_ev -= 0.18 * pot
 
+    # River decisions use tighter pot-odds discipline because no future cards remain.
     if street == "river":
         call_ev, raise_ev = apply_river_discipline(
             call_ev, raise_ev, raise_ok, wr, made_score, pot, pot_odds, hand_info, response
         )
 
+    # Re-raised pots require a larger margin before adding chips.
     history_line = hand_info["history_line"]
     call_slack_mult = 1.0
     raise_margin_mult = 1.0
@@ -79,6 +91,7 @@ def choose_action(state, hand_info, response):
             raise_ev += 0.04 * pot
         call_slack_mult = 1.15
 
+    # Leaf features break close EV ties but do not replace the EV calculation.
     bonus_weight = 0.08 + 0.14 * hand_info["street_progress"]
     bonus = score_state(hand_info, pot + to_call, response["fold"], response["opp_aggression"], state["is_sb"])
     call_ev += bonus_weight * bonus

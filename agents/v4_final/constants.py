@@ -1,3 +1,9 @@
+"""Tuned constants for the final sampled-EV agent.
+
+The weights are intentionally small and interpretable: raw EV remains the main
+signal, while these values only adjust close decisions.
+"""
+
 WEIGHTS = {
     "equity": 3.0,
     "draw_potential": 1.0,

@@ -1,3 +1,10 @@
+"""Version 3: range-aware heuristic agent.
+
+This intermediate snapshot extends the EV baseline with sampled range correction,
+board-texture features, and stronger betting-line awareness. It is kept as an
+ablation point for the report benchmarks.
+"""
+
 import time
 import random
 

@@ -1,3 +1,9 @@
+"""Feature extraction for the final agent.
+
+This module turns the compact state into strategic features: Monte Carlo equity,
+range-aware equity correction, draw potential, board texture, and made-hand value.
+"""
+
 import random
 
 from pypokerengine.engine.hand_evaluator import HandEvaluator
@@ -8,6 +14,7 @@ from constants import HAND_MADE_SCORE, NUM_SIMS, RANGE_SIMS
 
 
 def analyze_state(state):
+    """Estimate current hand quality and board context for action selection."""
     hole_card = state["hole_card"]
     community = state["community"]
     pot = state["pot"]

@@ -1,3 +1,5 @@
+"""PyPokerEngine player wrapper for the final modular agent."""
+
 import time
 
 from pypokerengine.players import BasePokerPlayer
@@ -9,6 +11,8 @@ from state import read_state
 
 
 class MyPlayer(BasePokerPlayer):
+    """Thin callback layer around state parsing, opponent modeling, and decision logic."""
+
     def __init__(self):
         super().__init__()
         self.history = initial_history()
